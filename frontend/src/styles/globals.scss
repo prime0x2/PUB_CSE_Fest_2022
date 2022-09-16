@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&family=Iceland&family=Rampart+One&family=Signika+Negative:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*------------- base styles -------------*/
+
+@layer base {
+	* {
+		box-sizing: border-box;
+		font-family: 'Signika Negative', sans-serif;
+		// font-family: 'Iceberg', cursive;
+		// font-family: 'Iceland', cursive;
+		// font-family: 'Rampart One', cursive;
+	}
+}
+
+/*------------- global styles -------------*/
+
+@layer components {
+	.page {
+		@apply w-full max-w-7xl mx-auto;
+	}
+}

@@ -1,0 +1,65 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.navbar {
+		@apply w-full shadow bg-white dark:bg-slate-900;
+
+		.container {
+			@apply h-20 w-full max-w-7xl mx-auto xl:p-0 flex items-center justify-between;
+
+			.logo {
+				@apply text-emerald-600 dark:text-emerald-400;
+
+				button {
+					@apply flex items-center font-rampart text-4xl;
+				}
+			}
+
+			.actions {
+				@apply flex items-center gap-10;
+
+				.user {
+					@apply flex items-center gap-2;
+
+					.btn-login {
+						@apply px-5 py-2 uppercase text-sm font-semibold tracking-wide rounded-md shadow-lg bg-emerald-500 shadow-emerald-500/40 text-white;
+					}
+
+					.btn-register {
+						@apply px-5 py-2 dark:text-white uppercase text-sm font-semibold tracking-wide rounded-md;
+					}
+				}
+
+				.theme {
+					@apply relative;
+
+					.checkbox {
+						@apply opacity-0 absolute cursor-pointer;
+					}
+
+					.label {
+						@apply w-14 h-8 p-[3px] relative flex items-center justify-between bg-slate-900 dark:bg-slate-700 rounded-[100px] cursor-pointer;
+
+						.moon {
+							@apply text-white text-xl;
+						}
+
+						.sun {
+							@apply text-yellow-500 text-xl;
+						}
+
+						.ball {
+							@apply w-[26px] h-[26px] absolute bg-white rounded-full shadow-md transition duration-300;
+							transition: transform 0.2s linear;
+						}
+					}
+
+					.checkbox:checked + .label .ball {
+						@apply transform translate-x-6;
+					}
+				}
+			}
+		}
+	}
+}
