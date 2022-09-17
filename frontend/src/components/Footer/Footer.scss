@@ -1,0 +1,20 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.footer {
+		@apply w-full absolute bottom-0 bg-white dark:bg-slate-900 border-t dark:border-slate-800;
+
+		.container {
+			@apply w-full px-5 max-w-7xl mx-auto xl:p-0 flex flex-col items-center justify-center;
+
+			.footer__copyright {
+				@apply py-4 text-center text-sm tracking-wide text-gray-500 dark:text-gray-200 font-light;
+
+				span {
+					@apply text-emerald-500 dark:text-emerald-400 font-medium;
+				}
+			}
+		}
+	}
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IoMoon, IoSunny } from 'react-icons/io5';
+import { IoMoon, IoSunny, IoMenu } from 'react-icons/io5';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../store/themeSlice/themeSlice';
 import './Navbar.scss';
@@ -28,7 +28,7 @@ const Navbar = () => {
 							navigate('/');
 						}}
 					>
-						CSE FEST 2022
+						<img src='/logo2.png' alt='' />
 					</button>
 				</div>
 
@@ -65,6 +65,12 @@ const Navbar = () => {
 							<div className='ball'></div>
 						</label>
 					</div>
+				</div>
+
+				<div className='mobile-nav'>
+					<button className='btn-hamburger'>
+						<IoMenu className='icon' />
+					</button>
 				</div>
 			</div>
 		</nav>

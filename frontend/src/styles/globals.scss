@@ -20,6 +20,13 @@
 
 @layer components {
 	.page {
-		@apply w-full max-w-7xl mx-auto;
+		@apply w-full max-w-7xl mx-auto pb-[5.25rem];
+	}
+
+	#root {
+		@apply dark:bg-gray-900;
+
+		position: relative;
+		min-height: 100vh;
 	}
 }
