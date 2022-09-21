@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { AdminModel } from '../schemas/admin.schema.js';
 
 export const verifyJWT = (req, res, next) => {
     const token = req.headers['x-access-token'];
@@ -15,6 +16,10 @@ export const verifyJWT = (req, res, next) => {
                 auth: false,
                 message: 'Unauthorized Access.'
             });
+        }
+        const admin = AdminModel.findById(decoded.id);
+        if (admin) {
+            req.isAdmin = true;
         }
         req.userID = decoded.id;
         next();

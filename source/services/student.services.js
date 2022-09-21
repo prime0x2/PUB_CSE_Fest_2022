@@ -8,12 +8,12 @@ export class StudentServices {
     /*-------------------- register student --------------------*/
 
     static async register(body) {
-        const { name, studentID, batch, password } = body;
+        const { name, studentID, phone, password, tShirtSize } = body;
 
         const student = await StudentModel.findOne({ studentID });
         if (student) {
             throw BadRequestException("Student ID already exists")
-        };
+        }
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -21,8 +21,11 @@ export class StudentServices {
         const newStudent = new StudentModel({
             name,
             studentID,
-            batch,
+            phone,
             password: hashedPassword,
+            fest2022: {
+                tShirtSize,
+            }
         });
 
         await newStudent.save();
@@ -32,9 +35,7 @@ export class StudentServices {
                 id: newStudent._id,
                 studentID: newStudent.studentID,
                 name: newStudent.name,
-                batch: newStudent.batch,
-                isPaid: newStudent.isPaid,
-            }),
+            })
         }
     }
 
@@ -47,52 +48,75 @@ export class StudentServices {
         const student = await StudentModel.findOne({ studentID });
         if (!student) {
             throw NotFoundException("Student not found")
-        };
+        }
 
         const validPassword = await bcrypt.compare(password, student.password);
         if (!validPassword) {
-            throw BadRequestException("Invalid ID or password")
-        };
+            throw BadRequestException("Invalid student ID or password")
+        }
 
         return {
             token: issueJWT({
                 id: student._id,
                 studentID: student.studentID,
                 name: student.name,
-                batch: student.batch,
-                isPaid: student.isPaid,
-            }),
+            })
         }
     }
 
 
-    /*-------------------- get student details --------------------*/
+    /*-------------------- my profile --------------------*/
 
-    static async getDetails(id) {
+    static async myProfile(id) {
         const student = await StudentModel.findById(id, { password: 0 });
         if (!student) {
             throw NotFoundException("Student not found")
-        };
+        }
 
         return student;
     }
 
 
-    /*-------------------- update student details --------------------*/
+    /*-------------------- update profile --------------------*/
 
-    static async updateDetails(id, body) {
-        const { name, batch } = body;
+    static async updateProfile(id, body) {
+        const { name, phone, tShirtSize } = body;
 
         const student = await StudentModel.findById(id, { password: 0 });
         if (!student) {
             throw NotFoundException("Student not found")
-        };
+        }
 
         student.name = name || student.name;
-        student.batch = batch || student.batch;
+        student.phone = phone || student.phone;
+        student.fest2022.tShirtSize = tShirtSize || student.fest2022.tShirtSize;
 
         await student.save();
 
-        return student;
+        return {
+            name: student.name,
+            phone: student.phone,
+            tShirtSize: student.fest2022.tShirtSize,
+        }
+    }
+
+
+    /*-------------------- payment --------------------*/
+
+    static async payment(id, body) {
+        const { transactionID } = body;
+
+        const student = await StudentModel.findById(id, { password: 0 });
+        if (!student) {
+            throw NotFoundException("Student not found")
+        }
+
+        student.fest2022.payment.trxID = transactionID;
+
+        await student.save();
+
+        return {
+            transactionID: student.fest2022.payment.trxID,
+        }
     }
 }

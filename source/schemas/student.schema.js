@@ -5,6 +5,8 @@ const studentSchema = new mongoose.Schema(
         name: {
             type: String,
             required: [true, "Name is required"],
+            minlength: [4, "Name must be 4 characters long"],
+            maxlength: [32, "Name must be less than 32 characters"],
         },
         studentID: {
             type: String,
@@ -13,18 +15,52 @@ const studentSchema = new mongoose.Schema(
             minlength: [11, "Student ID must be 11 characters long"],
             maxlength: [16, "Student ID must be 16 characters long"],
         },
-        batch: {
+        phone: {
             type: String,
-            required: [true, "Batch is required"],
+            required: [true, "Phone number is required"],
+            minlength: [11, "Phone number must be 11 characters long"],
+            maxlength: [11, "Phone number must be 11 characters long"],
         },
         password: {
             type: String,
             required: [true, "Password is required"],
         },
-        isPaid: {
-            type: Boolean,
-            default: false,
-        },
+        fest2022: {
+            tShirtSize: {
+                type: String,
+                enum: ["S", "M", "L", "XL", "XXL"],
+                required: [true, "T-shirt size is required"],
+            },
+            payment: {
+                trxID: {
+                    type: String,
+                    default: null,
+                },
+                status: {
+                    type: String,
+                    enum: ["pending", "approved", "rejected"],
+                    default: "pending",
+                },
+                date: {
+                    type: Date,
+                    default: null,
+                },
+            },
+            info: {
+                isAttending: {
+                    type: Boolean,
+                    default: false,
+                },
+                receivedTShirt: {
+                    type: Boolean,
+                    default: false,
+                },
+                receivedFood: {
+                    type: Boolean,
+                    default: false,
+                },
+            }
+        }
     },
     {
         timestamps: true,

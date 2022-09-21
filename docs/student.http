@@ -5,7 +5,7 @@ Content-Type: application/json
 {
     "name": "Hello Nigga",
     "studentID": "01620106009",
-    "batch": "16th",
+    "phone": "01309897793",
     "password": "test"
 }
 
@@ -21,5 +21,16 @@ Content-Type: application/json
 
 
 ### get student details
-GET http://localhost:5000/api/student/details
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMjVkMjRmNzdhYjY2NGIzOWI4ZTEzZCIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDA5IiwibmFtZSI6IkhlbGxvIE5pZ2dhIiwiYmF0Y2giOiIxNnRoIiwiaXNQYWlkIjpmYWxzZSwiaWF0IjoxNjYzNDIzMzMwLCJleHAiOjE2NjM0MjY5MzB9.abjKarmU9STegOsscURmcEQ8tLONkRFIpvOZRVbVtIo
+GET http://localhost:5000/api/student/myDetails
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMjYwNDUwYjlhNTRiM2Y4MWQzN2ZkOCIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDA5IiwibmFtZSI6IkhlbGxvIE5pZ2dhIiwicGhvbmUiOiIwMTMwOTg5Nzc5MyIsImlzUGFpZCI6ZmFsc2UsImlhdCI6MTY2MzQzNTg2NCwiZXhwIjoxNjYzNDM5NDY0fQ.Zl3AUlJt7j6GmLzYvtuFfSDUXVzAbXubr1QTaolLxdo
+
+
+### update student details
+PUT http://localhost:5000/api/student/details
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMjYwNDUwYjlhNTRiM2Y4MWQzN2ZkOCIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDA5IiwibmFtZSI6IkhlbGxvIE5pZ2dhIiwicGhvbmUiOiIwMTMwOTg5Nzc5MyIsImlzUGFpZCI6ZmFsc2UsImlhdCI6MTY2MzQzNTg2NCwiZXhwIjoxNjYzNDM5NDY0fQ.Zl3AUlJt7j6GmLzYvtuFfSDUXVzAbXubr1QTaolLxdo
+
+{
+    "name": "Hello Nigga",
+    "phone": "01309897793"
+}

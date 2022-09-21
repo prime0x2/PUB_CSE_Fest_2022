@@ -1,0 +1,24 @@
+### register admin
+POST http://localhost:5000/api/admin/register
+Content-Type: application/json
+
+{
+    "name": "admin5",
+    "username": "admin5",
+    "password": "admin5"
+}
+
+
+### login admin
+POST http://localhost:5000/api/admin/login
+Content-Type: application/json
+
+{
+    "username": "admin2",
+    "password": "admin2"
+}
+
+
+### get all admins
+GET http://localhost:5000/api/admin/admins
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmI2ZDk3ODUwNDQxOGVlYTZiYWQzYSIsInVzZXJuYW1lIjoiYWRtaW4yIiwibmFtZSI6ImFkbWluMiIsImlhdCI6MTY2Mzc5MDY0NSwiZXhwIjoxNjYzNzk0MjQ1fQ.K9ipR-82Xsq12PrulGCfKH6yDDimBA7a5h-1UwELIUQ

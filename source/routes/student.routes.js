@@ -7,8 +7,9 @@ const router = Router();
 
 router.post('/login', StudentController.login);
 router.post('/register', StudentController.register);
-router.get('/details', verifyJWT, StudentController.getDetails);
-router.put('/details', verifyJWT, StudentController.updateDetails);
+router.get('/profile', verifyJWT, StudentController.getMyProfile);
+router.put('/profile', verifyJWT, StudentController.updateProfile);
+router.put('/payment', verifyJWT, StudentController.payment);
 
 
 

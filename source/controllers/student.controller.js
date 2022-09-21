@@ -36,15 +36,15 @@ export class StudentController {
     }
 
 
-    /*-------------------- get student details --------------------*/
+    /*-------------------- get my profile --------------------*/
 
-    static async getDetails(req, res, next) {
+    static async getMyProfile(req, res, next) {
         try {
-            const data = await StudentServices.getDetails(req.userID);
+            const data = await StudentServices.getMyProfile(req.userID);
 
             res.status(200).json({
                 status: 200,
-                message: "Student details fetched successfully",
+                message: "My profile details fetched successfully",
                 data,
             });
         } catch (error) {
@@ -53,15 +53,32 @@ export class StudentController {
     }
 
 
-    /*-------------------- update student details --------------------*/
+    /*-------------------- update profile --------------------*/
 
-    static async updateDetails(req, res, next) {
+    static async updateProfile(req, res, next) {
         try {
-            const data = await StudentServices.updateDetails(req.userID, req.body);
+            const data = await StudentServices.updateProfile(req.userID, req.body);
 
             res.status(200).json({
                 status: 200,
-                message: "Student details updated successfully",
+                message: "Profile updated successfully",
+                data,
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+
+    /*------------------------- payment -------------------------*/
+
+    static async payment(req, res, next) {
+        try {
+            const data = await StudentServices.payment(req.userID, req.body);
+
+            res.status(200).json({
+                status: 200,
+                message: "Payment submitted successfully",
                 data,
             });
         } catch (error) {
