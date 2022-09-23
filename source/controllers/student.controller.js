@@ -40,7 +40,7 @@ export class StudentController {
 
     static async getMyProfile(req, res, next) {
         try {
-            const data = await StudentServices.getMyProfile(req.userID);
+            const data = await StudentServices.myProfile(req.userID);
 
             res.status(200).json({
                 status: 200,

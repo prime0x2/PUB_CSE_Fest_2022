@@ -3,10 +3,11 @@ POST http://localhost:5000/api/student/register
 Content-Type: application/json
 
 {
-    "name": "Hello Nigga",
-    "studentID": "01620106009",
+    "name": "Test4",
+    "studentID": "01620106004",
     "phone": "01309897793",
-    "password": "test"
+    "password": "test",
+    "tShirtSize": "XL"
 }
 
 
@@ -15,22 +16,33 @@ POST http://localhost:5000/api/student/login
 Content-Type: application/json
 
 {
-    "studentID": "01620106009",
+    "studentID": "01620106003",
     "password": "test"
 }
 
 
-### get student details
-GET http://localhost:5000/api/student/myDetails
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMjYwNDUwYjlhNTRiM2Y4MWQzN2ZkOCIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDA5IiwibmFtZSI6IkhlbGxvIE5pZ2dhIiwicGhvbmUiOiIwMTMwOTg5Nzc5MyIsImlzUGFpZCI6ZmFsc2UsImlhdCI6MTY2MzQzNTg2NCwiZXhwIjoxNjYzNDM5NDY0fQ.Zl3AUlJt7j6GmLzYvtuFfSDUXVzAbXubr1QTaolLxdo
+### my profile
+GET http://localhost:5000/api/student/profile
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmRiZWI2YzJhNjk0ZjdkNGI5NjVjMCIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDAyIiwibmFtZSI6IlRlc3QyIiwiaWF0IjoxNjYzOTQyMzQ2LCJleHAiOjE2NjM5NDU5NDZ9.oa2_kGHoH6wMN5fVl4Th6aVvCBCJkrLglNpQIuxymOk
 
 
-### update student details
-PUT http://localhost:5000/api/student/details
+### update profile
+PUT http://localhost:5000/api/student/profile
 Content-Type: application/json
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMjYwNDUwYjlhNTRiM2Y4MWQzN2ZkOCIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDA5IiwibmFtZSI6IkhlbGxvIE5pZ2dhIiwicGhvbmUiOiIwMTMwOTg5Nzc5MyIsImlzUGFpZCI6ZmFsc2UsImlhdCI6MTY2MzQzNTg2NCwiZXhwIjoxNjYzNDM5NDY0fQ.Zl3AUlJt7j6GmLzYvtuFfSDUXVzAbXubr1QTaolLxdo
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmMzM2FkNjQ4NTdhZDc4OTY1NzZjOSIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDAxIiwibmFtZSI6IkhlbGxvIE5pZ2dhIiwiaWF0IjoxNjYzODQxNDIxLCJleHAiOjE2NjM4NDUwMjF9.4SkGMbPL8onXXqmgiUtAgWNhOHrtiPM99vw9GtF-p9o
 
 {
-    "name": "Hello Nigga",
-    "phone": "01309897793"
+    "name": "Updated Nigga",
+    "phone": "01309897793",
+    "tShirtSize": "XL"
+}
+
+
+### payment
+PUT http://localhost:5000/api/student/payment
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmRiZWJjYzJhNjk0ZjdkNGI5NjVjMyIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDAzIiwibmFtZSI6IlRlc3QzIiwiaWF0IjoxNjYzOTQyNjU1LCJleHAiOjE2NjM5NDYyNTV9.39OgdaLXE-c7ttTGlR6tYVj65vgtjcx2i5nxOuiPQNk
+
+{
+    "transactionID": "TEST_TEST"
 }

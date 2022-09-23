@@ -10,14 +10,14 @@ export const verifyJWT = (req, res, next) => {
         });
     }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
         if (err) {
             return res.status(401).json({
                 auth: false,
                 message: 'Unauthorized Access.'
             });
         }
-        const admin = AdminModel.findById(decoded.id);
+        const admin = await AdminModel.findById(decoded.id);
         if (admin) {
             req.isAdmin = true;
         }

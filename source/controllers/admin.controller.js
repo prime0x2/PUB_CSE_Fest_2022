@@ -40,7 +40,7 @@ export class AdminController {
 
     static async getAllAdmins(req, res, next) {
         try {
-            const data = await AdminServices.getAdminsList();
+            const data = await AdminServices.getAdminsList(req.isAdmin);
 
             res.status(200).json({
                 status: 200,
@@ -57,7 +57,7 @@ export class AdminController {
 
     static async getStudentsList(req, res, next) {
         try {
-            const data = await AdminServices.getStudentsList();
+            const data = await AdminServices.getStudentsList(req.isAdmin);
 
             res.status(200).json({
                 status: 200,
@@ -74,7 +74,7 @@ export class AdminController {
 
     static async getStudentDetails(req, res, next) {
         try {
-            const data = await AdminServices.getStudentDetails(req.params.id);
+            const data = await AdminServices.getStudentDetails(req.isAdmin, req.params.id);
 
             res.status(200).json({
                 status: 200,
@@ -91,7 +91,7 @@ export class AdminController {
 
     static async deleteStudent(req, res, next) {
         try {
-            const data = await AdminServices.deleteStudent(req.params.id);
+            const data = await AdminServices.deleteStudent(req.isAdmin, req.params.id);
 
             res.status(200).json({
                 status: 200,
@@ -108,7 +108,7 @@ export class AdminController {
 
     static async approvePayment(req, res, next) {
         try {
-            const data = await AdminServices.approvePayment(req.params.id);
+            const data = await AdminServices.approvePayment(req.isAdmin, req.params.id);
 
             res.status(200).json({
                 status: 200,
@@ -125,7 +125,7 @@ export class AdminController {
 
     static async rejectPayment(req, res, next) {
         try {
-            const data = await AdminServices.rejectPayment(req.params.id);
+            const data = await AdminServices.rejectPayment(req.isAdmin, req.params.id);
 
             res.status(200).json({
                 status: 200,
@@ -142,7 +142,7 @@ export class AdminController {
 
     static async tShirtStatus(req, res, next) {
         try {
-            const data = await AdminServices.tShirtStatus(req.params.id);
+            const data = await AdminServices.tShirtStatus(req.isAdmin, req.params.id);
 
             res.status(200).json({
                 status: 200,
@@ -159,7 +159,7 @@ export class AdminController {
 
     static async foodStatus(req, res, next) {
         try {
-            const data = await AdminServices.foodStatus(req.params.id);
+            const data = await AdminServices.foodStatus(req.isAdmin, req.params.id);
 
             res.status(200).json({
                 status: 200,
@@ -176,7 +176,7 @@ export class AdminController {
 
     static async attendingStatus(req, res, next) {
         try {
-            const data = await AdminServices.attendingStatus(req.params.id);
+            const data = await AdminServices.attendingStatus(req.isAdmin, req.params.id);
 
             res.status(200).json({
                 status: 200,

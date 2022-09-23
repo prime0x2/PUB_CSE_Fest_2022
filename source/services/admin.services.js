@@ -65,7 +65,9 @@ export class AdminServices {
 
     /*-------------------- get all admins --------------------*/
 
-    static async getAdminsList() {
+    static async getAdminsList(isAdmin) {
+        if (!isAdmin) throw BadRequestException("You are not an admin");
+
         const admins = await AdminModel.find({}, { password: 0 });
 
         return admins;
@@ -74,7 +76,9 @@ export class AdminServices {
 
     /*-------------------- get students list --------------------*/
 
-    static async getStudentsList() {
+    static async getStudentsList(isAdmin) {
+        if (!isAdmin) throw BadRequestException("You are not an admin");
+
         const students = await StudentModel.find({}, { password: 0 });
 
         return students;
@@ -83,7 +87,9 @@ export class AdminServices {
 
     /*-------------------- get student details --------------------*/
 
-    static async getStudentDetails(id) {
+    static async getStudentDetails(isAdmin, id) {
+        if (!isAdmin) throw BadRequestException("You are not an admin");
+
         const student = await StudentModel.findById(id, { password: 0 });
         if (!student) {
             throw NotFoundException("Student not found")
@@ -95,7 +101,9 @@ export class AdminServices {
 
     /*-------------------- delete student --------------------*/
 
-    static async deleteStudent(id) {
+    static async deleteStudent(isAdmin, id) {
+        if (!isAdmin) throw BadRequestException("You are not an admin");
+
         const student = await StudentModel.findById(id);
         if (!student) {
             throw NotFoundException("Student not found")
@@ -109,7 +117,9 @@ export class AdminServices {
 
     /*-------------------- approve payment --------------------*/
 
-    static async approvePayment(id) {
+    static async approvePayment(isAdmin, id) {
+        if (!isAdmin) throw BadRequestException("You are not an admin");
+
         const student = await StudentModel.findById(id);
         if (!student) {
             throw NotFoundException("Student not found")
@@ -140,7 +150,9 @@ export class AdminServices {
 
     /*-------------------- reject payment --------------------*/
 
-    static async rejectPayment(id) {
+    static async rejectPayment(isAdmin, id) {
+        if (!isAdmin) throw BadRequestException("You are not an admin");
+
         const student = await StudentModel.findById(id);
         if (!student) {
             throw NotFoundException("Student not found")
@@ -170,7 +182,9 @@ export class AdminServices {
 
     /*-------------------- toggle t-shirt status --------------------*/
 
-    static async tShirtStatus(id) {
+    static async tShirtStatus(isAdmin, id) {
+        if (!isAdmin) throw BadRequestException("You are not an admin");
+
         const student = await StudentModel.findById(id);
         if (!student) {
             throw NotFoundException("Student not found")
@@ -188,7 +202,9 @@ export class AdminServices {
 
     /*-------------------- toggle food status --------------------*/
 
-    static async foodStatus(id) {
+    static async foodStatus(isAdmin, id) {
+        if (!isAdmin) throw BadRequestException("You are not an admin");
+
         const student = await StudentModel.findById(id);
         if (!student) {
             throw NotFoundException("Student not found")
@@ -206,7 +222,9 @@ export class AdminServices {
 
     /*-------------------- toggle attending status --------------------*/
 
-    static async attendingStatus(id) {
+    static async attendingStatus(isAdmin, id) {
+        if (!isAdmin) throw BadRequestException("You are not an admin");
+
         const student = await StudentModel.findById(id);
         if (!student) {
             throw NotFoundException("Student not found")
