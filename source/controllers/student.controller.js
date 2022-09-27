@@ -27,7 +27,7 @@ export class StudentController {
 
             res.status(200).json({
                 status: 200,
-                message: "Student logged in successfully",
+                message: "Logged in successfully",
                 data,
             });
         } catch (error) {
@@ -53,23 +53,6 @@ export class StudentController {
     }
 
 
-    /*-------------------- update profile --------------------*/
-
-    static async updateProfile(req, res, next) {
-        try {
-            const data = await StudentServices.updateProfile(req.userID, req.body);
-
-            res.status(200).json({
-                status: 200,
-                message: "Profile updated successfully",
-                data,
-            });
-        } catch (error) {
-            next(error);
-        }
-    }
-
-
     /*------------------------- payment -------------------------*/
 
     static async payment(req, res, next) {
@@ -79,6 +62,57 @@ export class StudentController {
             res.status(200).json({
                 status: 200,
                 message: "Payment submitted successfully",
+                data,
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+
+    /*-------------------- tShirt size --------------------*/
+
+    static async tShirtSize(req, res, next) {
+        try {
+            const data = await StudentServices.tShirtSize(req.userID, req.body);
+
+            res.status(200).json({
+                status: 200,
+                message: "T-shirt size submitted successfully",
+                data,
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+
+    /*-------------------- participation --------------------*/
+
+    static async participation(req, res, next) {
+        try {
+            const data = await StudentServices.participation(req.userID, req.body);
+
+            res.status(200).json({
+                status: 200,
+                message: "Participation submitted successfully",
+                data,
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+
+    /*-------------------- update info --------------------*/
+
+    static async updateProfile(req, res, next) {
+        try {
+            const data = await StudentServices.updateProfile(req.userID, req.body);
+
+            res.status(200).json({
+                status: 200,
+                message: "Profile info updated successfully",
                 data,
             });
         } catch (error) {

@@ -115,6 +115,17 @@ export class AdminServices {
     }
 
 
+    /*-------------------- pending payments --------------------*/
+
+    static async pendingPayments(isAdmin) {
+        if (!isAdmin) throw BadRequestException("You are not an admin");
+
+        const students = await StudentModel.find({ "fest2022.payment.status": "pending" }, { password: 0, "fest2022.info": 0, "fest2022.participation": 0 });
+
+        return students;
+    }
+
+
     /*-------------------- approve payment --------------------*/
 
     static async approvePayment(isAdmin, id) {
@@ -125,20 +136,12 @@ export class AdminServices {
             throw NotFoundException("Student not found")
         };
 
-        if (student.fest2022.payment.status === "approved") {
-            throw BadRequestException("Payment already approved")
-        };
-
-        if (student.fest2022.payment.status === "rejected") {
-            throw BadRequestException("Payment already rejected")
-        }
-
-        if (!student.fest2022.payment.trxID) {
-            throw NotFoundException("Transaction ID not found")
+        if (student.fest2022.payment.status === "notPaid") {
+            throw BadRequestException("Payment not done yet")
         }
 
         student.fest2022.payment.status = "approved";
-        student.fest2022.payment.date = new Date();
+        student.fest2022.payment.approvedDate = new Date();
 
         await student.save();
 
@@ -158,16 +161,8 @@ export class AdminServices {
             throw NotFoundException("Student not found")
         };
 
-        if (student.fest2022.payment.status === "approved") {
-            throw BadRequestException("Payment already approved")
-        };
-
-        if (student.fest2022.payment.status === "rejected") {
-            throw BadRequestException("Payment already rejected")
-        }
-
-        if (!student.fest2022.payment.trxID) {
-            throw NotFoundException("Transaction ID not found")
+        if (student.fest2022.payment.status === "notPaid") {
+            throw BadRequestException("Payment not done yet")
         }
 
         student.fest2022.payment.status = "rejected";
@@ -180,7 +175,7 @@ export class AdminServices {
     }
 
 
-    /*-------------------- toggle t-shirt status --------------------*/
+    /*-------------------- tShirt status --------------------*/
 
     static async tShirtStatus(isAdmin, id) {
         if (!isAdmin) throw BadRequestException("You are not an admin");
@@ -200,42 +195,64 @@ export class AdminServices {
     }
 
 
-    /*-------------------- toggle food status --------------------*/
+    /*-------------------- attendance status --------------------*/
 
-    static async foodStatus(isAdmin, id) {
+    static async attendanceStatus(isAdmin, id, body) {
         if (!isAdmin) throw BadRequestException("You are not an admin");
+
+        const { day } = body;
 
         const student = await StudentModel.findById(id);
         if (!student) {
             throw NotFoundException("Student not found")
         };
 
-        student.fest2022.info.receivedFood = !student.fest2022.info.receivedFood;
+        if (day === "day1") {
+            student.fest2022.info.day1.isAttended = !student.fest2022.info.day1.isAttended;
+        }
+        else if (day === "day2") {
+            student.fest2022.info.day2.isAttended = !student.fest2022.info.day2.isAttended;
+        }
+        else {
+            throw BadRequestException("Invalid day")
+        }
 
         await student.save();
 
         return {
-            foodStatus: student.fest2022.info.receivedFood,
+            day: day,
+            attendanceStatus: day === "day1" ? student.fest2022.info.day1.isAttended : student.fest2022.info.day2.isAttended,
         }
     }
 
 
-    /*-------------------- toggle attending status --------------------*/
+    /*-------------------- food status --------------------*/
 
-    static async attendingStatus(isAdmin, id) {
+    static async foodStatus(isAdmin, id, body) {
         if (!isAdmin) throw BadRequestException("You are not an admin");
+
+        const { day } = body;
 
         const student = await StudentModel.findById(id);
         if (!student) {
             throw NotFoundException("Student not found")
         };
 
-        student.fest2022.info.isAttending = !student.fest2022.info.isAttending;
+        if (day === "day1") {
+            student.fest2022.info.day1.receivedFood = !student.fest2022.info.day1.receivedFood;
+        }
+        else if (day === "day2") {
+            student.fest2022.info.day2.receivedFood = !student.fest2022.info.day2.receivedFood;
+        }
+        else {
+            throw BadRequestException("Invalid day")
+        }
 
         await student.save();
 
         return {
-            attendingStatus: student.fest2022.info.isAttending,
+            day: day,
+            foodStatus: day === "day1" ? student.fest2022.info.day1.receivedFood : student.fest2022.info.day2.receivedFood,
         }
     }
 }

@@ -104,6 +104,23 @@ export class AdminController {
     }
 
 
+    /*-------------------- pending payments --------------------*/
+
+    static async pendingPayments(req, res, next) {
+        try {
+            const data = await AdminServices.pendingPayments(req.isAdmin);
+
+            res.status(200).json({
+                status: 200,
+                message: "Pending payments fetched successfully",
+                data,
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+
     /*-------------------- approve payment --------------------*/
 
     static async approvePayment(req, res, next) {
@@ -138,7 +155,7 @@ export class AdminController {
     }
 
 
-    /*-------------------- toggle t-shirt status --------------------*/
+    /*-------------------- tShirt status --------------------*/
 
     static async tShirtStatus(req, res, next) {
         try {
@@ -146,7 +163,7 @@ export class AdminController {
 
             res.status(200).json({
                 status: 200,
-                message: "T-shirt status toggled successfully",
+                message: "T-Shirt status updated successfully",
                 data,
             });
         } catch (error) {
@@ -155,32 +172,32 @@ export class AdminController {
     }
 
 
-    /*-------------------- toggle food status --------------------*/
+    /*-------------------- attendance status --------------------*/
+
+    static async attendanceStatus(req, res, next) {
+        try {
+            const data = await AdminServices.attendanceStatus(req.isAdmin, req.params.id, req.body);
+
+            res.status(200).json({
+                status: 200,
+                message: "Attendance status updated successfully",
+                data,
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+
+    /*-------------------- food status --------------------*/
 
     static async foodStatus(req, res, next) {
         try {
-            const data = await AdminServices.foodStatus(req.isAdmin, req.params.id);
+            const data = await AdminServices.foodStatus(req.isAdmin, req.params.id, req.body);
 
             res.status(200).json({
                 status: 200,
-                message: "Food status toggled successfully",
-                data,
-            });
-        } catch (error) {
-            next(error);
-        }
-    }
-
-
-    /*-------------------- toggle attending status --------------------*/
-
-    static async attendingStatus(req, res, next) {
-        try {
-            const data = await AdminServices.attendingStatus(req.isAdmin, req.params.id);
-
-            res.status(200).json({
-                status: 200,
-                message: "Attending status toggled successfully",
+                message: "Food status updated successfully",
                 data,
             });
         } catch (error) {

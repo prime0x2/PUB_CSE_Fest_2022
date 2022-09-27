@@ -74,30 +74,6 @@ export class StudentServices {
     }
 
 
-    /*-------------------- update profile --------------------*/
-
-    static async updateProfile(id, body) {
-        const { name, phone, tShirtSize } = body;
-
-        const student = await StudentModel.findById(id, { password: 0 });
-        if (!student) {
-            throw NotFoundException("Student not found")
-        }
-
-        student.name = name || student.name;
-        student.phone = phone || student.phone;
-        student.fest2022.tShirtSize = tShirtSize || student.fest2022.tShirtSize;
-
-        await student.save();
-
-        return {
-            name: student.name,
-            phone: student.phone,
-            tShirtSize: student.fest2022.tShirtSize,
-        }
-    }
-
-
     /*-------------------- payment --------------------*/
 
     static async payment(id, body) {
@@ -109,11 +85,87 @@ export class StudentServices {
         }
 
         student.fest2022.payment.trxID = transactionID;
+        student.fest2022.payment.status = "pending";
 
         await student.save();
 
         return {
             transactionID: student.fest2022.payment.trxID,
+            paymentStatus: student.fest2022.payment.status,
+        }
+    }
+
+
+    /*-------------------- tShirt size --------------------*/
+
+    static async tShirtSize(id, body) {
+        const { tShirtSize } = body;
+
+        const student = await StudentModel.findById(id, { password: 0 });
+        if (!student) {
+            throw NotFoundException("Student not found")
+        }
+        if (student.fest2022.payment.status !== 'approved') {
+            throw BadRequestException("Payment not approved")
+        }
+
+        if (!student.fest2022.info.isTShirtEditable) {
+            throw BadRequestException("T-shirt size is not editable")
+        }
+
+        student.fest2022.info.tShirtSize = tShirtSize;
+
+        await student.save();
+
+        return {
+            tShirtSize: student.fest2022.info.tShirtSize,
+        }
+    }
+
+
+    /*-------------------- participation --------------------*/
+
+    static async participation(id, body) {
+
+        const student = await StudentModel.findById(id, { password: 0 });
+        if (!student) {
+            throw NotFoundException("Student not found")
+        }
+        if (student.fest2022.payment.status !== 'approved') {
+            throw BadRequestException("Payment not approved")
+        }
+
+        Object.assign(student.fest2022.participation, body);
+
+        await student.save();
+
+        return {
+            ...student.fest2022.participation,
+        }
+    }
+
+
+    /*-------------------- update info --------------------*/
+
+    static async updateProfile(id, body) {
+        const { name, phone } = body;
+
+        const student = await StudentModel.findById(id, { password: 0 });
+        if (!student) {
+            throw NotFoundException("Student not found")
+        }
+        if (student.fest2022.payment.status !== 'approved') {
+            throw BadRequestException("Payment not approved")
+        }
+
+        student.name = name || student.name;
+        student.phone = phone || student.phone;
+
+        await student.save();
+
+        return {
+            name: student.name,
+            phone: student.phone,
         }
     }
 }

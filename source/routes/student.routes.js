@@ -10,7 +10,8 @@ router.post('/register', StudentController.register);
 router.get('/profile', verifyJWT, StudentController.getMyProfile);
 router.put('/profile', verifyJWT, StudentController.updateProfile);
 router.put('/payment', verifyJWT, StudentController.payment);
-
+router.put('/tShirt', verifyJWT, StudentController.tShirtSize);
+router.put('/participation', verifyJWT, StudentController.participation);
 
 
 export default router;

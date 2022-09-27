@@ -3,7 +3,7 @@ POST http://localhost:5000/api/student/register
 Content-Type: application/json
 
 {
-    "name": "Test4",
+    "name": "Student 5",
     "studentID": "01620106005",
     "phone": "01309897793",
     "password": "test"
@@ -22,26 +22,46 @@ Content-Type: application/json
 
 ### my profile
 GET http://localhost:5000/api/student/profile
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmRiZWI2YzJhNjk0ZjdkNGI5NjVjMCIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDAyIiwibmFtZSI6IlRlc3QyIiwiaWF0IjoxNjYzOTQyMzQ2LCJleHAiOjE2NjM5NDU5NDZ9.oa2_kGHoH6wMN5fVl4Th6aVvCBCJkrLglNpQIuxymOk
-
-
-### update profile
-PUT http://localhost:5000/api/student/profile
-Content-Type: application/json
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmMzM2FkNjQ4NTdhZDc4OTY1NzZjOSIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDAxIiwibmFtZSI6IkhlbGxvIE5pZ2dhIiwiaWF0IjoxNjYzODQxNDIxLCJleHAiOjE2NjM4NDUwMjF9.4SkGMbPL8onXXqmgiUtAgWNhOHrtiPM99vw9GtF-p9o
-
-{
-    "name": "Updated Nigga",
-    "phone": "01309897793",
-    "tShirtSize": "XL"
-}
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzMyMmI1Mjg1MmM2OTNhZjIwYzE0OSIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDAzIiwibmFtZSI6IlN0dWRlbnQgMyIsImlhdCI6MTY2NDI5NjgzMCwiZXhwIjoxNjY0MzAwNDMwfQ.fkhRPMFDQ-D9D6QOm7EopKaE-S6Yg5bKebjGKK3NbHc
 
 
 ### payment
 PUT http://localhost:5000/api/student/payment
 Content-Type: application/json
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmRiZWJjYzJhNjk0ZjdkNGI5NjVjMyIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDAzIiwibmFtZSI6IlRlc3QzIiwiaWF0IjoxNjYzOTQyNjU1LCJleHAiOjE2NjM5NDYyNTV9.39OgdaLXE-c7ttTGlR6tYVj65vgtjcx2i5nxOuiPQNk
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzMyMmI1Mjg1MmM2OTNhZjIwYzE0OSIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDAzIiwibmFtZSI6IlN0dWRlbnQgMyIsImlhdCI6MTY2NDI5NjE2NCwiZXhwIjoxNjY0Mjk5NzY0fQ.ROzq3sRPtj1AwaWOdDulTxZV0QRmipB0VWOVRhbjX-M
 
 {
-    "transactionID": "TEST_TEST"
+    "transactionID": "TEST_TEST_2"
+}
+
+
+### tShirtSize
+PUT http://localhost:5000/api/student/tShirt
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzMyMmI1Mjg1MmM2OTNhZjIwYzE0OSIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDAzIiwibmFtZSI6IlN0dWRlbnQgMyIsImlhdCI6MTY2NDI5NjgzMCwiZXhwIjoxNjY0MzAwNDMwfQ.fkhRPMFDQ-D9D6QOm7EopKaE-S6Yg5bKebjGKK3NbHc
+
+{
+    "tShirtSize": "XXL"
+}
+
+
+### participation
+PUT http://localhost:5000/api/student/participation
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzMyMmI1Mjg1MmM2OTNhZjIwYzE0OSIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDAzIiwibmFtZSI6IlN0dWRlbnQgMyIsImlhdCI6MTY2NDI5NjgzMCwiZXhwIjoxNjY0MzAwNDMwfQ.fkhRPMFDQ-D9D6QOm7EopKaE-S6Yg5bKebjGKK3NbHc
+
+{
+    "culturalProgram": true,
+    "treasureHunt": false
+}
+
+
+### update profile
+PUT http://localhost:5000/api/student/profile
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzMyMmI1Mjg1MmM2OTNhZjIwYzE0OSIsInN0dWRlbnRJRCI6IjAxNjIwMTA2MDAzIiwibmFtZSI6IlN0dWRlbnQgMyIsImlhdCI6MTY2NDI5NjgzMCwiZXhwIjoxNjY0MzAwNDMwfQ.fkhRPMFDQ-D9D6QOm7EopKaE-S6Yg5bKebjGKK3NbHc
+
+{
+    "name": "",
+    "phone": "01309897793"
 }

@@ -26,10 +26,40 @@ const studentSchema = new mongoose.Schema(
             required: [true, "Password is required"],
         },
         fest2022: {
-            tShirtSize: {
-                type: String,
-                enum: ["S", "M", "L", "XL", "XXL", null],
-                default: null,
+            info: {
+                tShirtSize: {
+                    type: String,
+                    enum: ["S", "M", "L", "XL", "XXL", null],
+                    default: null,
+                },
+                isTShirtEditable: {
+                    type: Boolean,
+                    default: true,
+                },
+                receivedTShirt: {
+                    type: Boolean,
+                    default: false,
+                },
+                day1: {
+                    isAttended: {
+                        type: Boolean,
+                        default: false,
+                    },
+                    receivedFood: {
+                        type: Boolean,
+                        default: false,
+                    },
+                },
+                day2: {
+                    isAttended: {
+                        type: Boolean,
+                        default: false,
+                    },
+                    receivedFood: {
+                        type: Boolean,
+                        default: false,
+                    },
+                },
             },
             payment: {
                 trxID: {
@@ -38,24 +68,36 @@ const studentSchema = new mongoose.Schema(
                 },
                 status: {
                     type: String,
-                    enum: ["pending", "approved", "rejected"],
-                    default: "pending",
+                    enum: ["notPaid", "pending", "approved", "rejected"],
+                    default: "notPaid",
                 },
-                date: {
+                approvedDate: {
                     type: Date,
                     default: null,
                 },
             },
-            info: {
-                isAttending: {
+            participation: {
+                programmingContest: {
                     type: Boolean,
                     default: false,
                 },
-                receivedTShirt: {
+                gamingContest: {
                     type: Boolean,
                     default: false,
                 },
-                receivedFood: {
+                treasureHunt: {
+                    type: Boolean,
+                    default: false,
+                },
+                indoorGame: {
+                    type: Boolean,
+                    default: false,
+                },
+                projectShowcase: {
+                    type: Boolean,
+                    default: false,
+                },
+                culturalProgram: {
                     type: Boolean,
                     default: false,
                 },
