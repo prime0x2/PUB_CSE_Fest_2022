@@ -4,12 +4,18 @@ import { IoMoon, IoSunny, IoMenu } from 'react-icons/io5';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../store/themeSlice/themeSlice';
 import './Navbar.scss';
+import { logout } from '../../store/userSlice/userSlice';
 
 const Navbar = () => {
+	// hooks
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const theme = useSelector((state) => state.theme.value);
+	const user = useSelector((state) => state.user);
+
+	// effects
 
 	React.useEffect(() => {
 		if (theme === 'dark') {
@@ -18,6 +24,13 @@ const Navbar = () => {
 			window.document.documentElement.classList.remove('dark');
 		}
 	}, [theme]);
+
+	// handlers
+
+	const handleLogout = () => {
+		dispatch(logout());
+		navigate('/');
+	};
 
 	return (
 		<nav className='navbar'>
@@ -30,23 +43,47 @@ const Navbar = () => {
 					>
 						<img src='/logo2.png' alt='' />
 					</button>
+					{user.info && (
+						<p>
+							Hello,{' '}
+							<span className='userName'>{user.info?.name}</span>
+						</p>
+					)}
 				</div>
 
 				<div className='actions'>
-					<div className='user'>
-						<button
-							className='btn-register'
-							onClick={() => navigate('/register')}
-						>
-							Register
-						</button>
-						<button
-							className='btn-login'
-							onClick={() => navigate('/login')}
-						>
-							Login
-						</button>
-					</div>
+					{!user.token ? (
+						<div className='user'>
+							<button
+								className='btn-register'
+								onClick={() => navigate('/register')}
+							>
+								Register
+							</button>
+							<button
+								className='btn-login'
+								onClick={() => navigate('/login')}
+							>
+								Login
+							</button>
+						</div>
+					) : (
+						<div className='user'>
+							<button
+								className='btn-register'
+								onClick={() => navigate('/profile')}
+							>
+								My Profile
+							</button>
+
+							<button
+								className='btn-login'
+								onClick={handleLogout}
+							>
+								Logout
+							</button>
+						</div>
+					)}
 
 					<div className='theme'>
 						<input

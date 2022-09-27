@@ -16,12 +16,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(errorLogger);
 
 
 /*----------------- routes -----------------*/
 
 app.use('/api', apiRoutes);
+
+
+/*----------------- error handling -----------------*/
+
+app.use(errorLogger);
 
 
 /*----------------- server -----------------*/

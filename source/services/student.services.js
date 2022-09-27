@@ -8,7 +8,7 @@ export class StudentServices {
     /*-------------------- register student --------------------*/
 
     static async register(body) {
-        const { name, studentID, phone, password, tShirtSize } = body;
+        const { name, studentID, phone, password } = body;
 
         const student = await StudentModel.findOne({ studentID });
         if (student) {
@@ -23,9 +23,6 @@ export class StudentServices {
             studentID,
             phone,
             password: hashedPassword,
-            fest2022: {
-                tShirtSize,
-            }
         });
 
         await newStudent.save();

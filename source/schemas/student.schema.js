@@ -28,8 +28,8 @@ const studentSchema = new mongoose.Schema(
         fest2022: {
             tShirtSize: {
                 type: String,
-                enum: ["S", "M", "L", "XL", "XXL"],
-                required: [true, "T-shirt size is required"],
+                enum: ["S", "M", "L", "XL", "XXL", null],
+                default: null,
             },
             payment: {
                 trxID: {

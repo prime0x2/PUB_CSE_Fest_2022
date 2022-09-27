@@ -4,10 +4,9 @@ Content-Type: application/json
 
 {
     "name": "Test4",
-    "studentID": "01620106004",
+    "studentID": "01620106005",
     "phone": "01309897793",
-    "password": "test",
-    "tShirtSize": "XL"
+    "password": "test"
 }
 
 
