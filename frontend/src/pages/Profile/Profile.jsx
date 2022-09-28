@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoWarningOutline } from 'react-icons/io5';
+import { IoWarningOutline, GiSandsOfTime } from 'react-icons/all';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Loading from '../../components/Loading/Loading';
@@ -45,25 +45,15 @@ const Profile = () => {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				console.log('my profile res : ', res);
+				// console.log('my profile res : ', res);
 				if (res.status === 200) {
-					const trxID = res.data?.fest2022?.payment?.trxID;
 					const payStatus = res.data?.fest2022?.payment?.status;
 					setData({
 						name: res.data.name,
 						studentID: res.data.studentID,
 						phone: res.data.phone,
 						tShirtSize: res.data?.fest2022?.tShirtSize || '',
-						payment:
-							trxID === null
-								? 'not paid'
-								: trxID !== null && payStatus === 'pending'
-								? 'pending'
-								: trxID !== null && payStatus === 'approved'
-								? 'paid'
-								: trxID !== null && payStatus === 'rejected'
-								? 'rejected'
-								: 'not paid',
+						payment: payStatus,
 					});
 				} else {
 					toast.error(res.message);
@@ -96,7 +86,7 @@ const Profile = () => {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				console.log('payment res : ', res);
+				// console.log('payment res : ', res);
 				if (res.status === 200) {
 					toast.success(res.message);
 					setData({
@@ -125,12 +115,10 @@ const Profile = () => {
 	return (
 		<section className='profile page'>
 			<div className='container'>
-				<h1>
-					{data.payment === 'not paid' ? 'Payment' : 'My Profile'}
-				</h1>
+				<h1>{data.payment === 'notPaid' ? 'Payment' : 'My Profile'}</h1>
 
 				<div className='profile__info'>
-					{data.payment === 'not paid' ? (
+					{data.payment === 'notPaid' && (
 						<div className='payment'>
 							<p className='payment__error'>
 								<IoWarningOutline className='icon' />
@@ -165,10 +153,19 @@ const Profile = () => {
 								</button>
 							</div>
 						</div>
-					) : (
-						<p className='text-3xl text-center my-10 font-iceberg text-slate-600 dark:text-white'>
-							Coming Soon
-						</p>
+					)}
+
+					{data.payment !== 'notPaid' && (
+						<div className='payment__pending'>
+							<div className='icon__wrapper'>
+								<GiSandsOfTime className='icon' />
+							</div>
+							<p>
+								Your payment is being processed. You will be
+								able to <br /> access the events after the
+								payment is confirmed.
+							</p>
+						</div>
 					)}
 				</div>
 			</div>

@@ -1,10 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { events } from '../../data';
 import './Home.scss';
 
 const Home = () => {
 	// page title
 
 	window.document.title = 'CSE FEST 2022 | PUB';
+
+	// hooks
+
+	const navigate = useNavigate();
 
 	return (
 		<section className='home page'>
@@ -18,10 +24,30 @@ const Home = () => {
 				</p>
 
 				<div className='actions'>
-					<button className='btn-register'>Register Now</button>
+					<button
+						className='btn-register'
+						onClick={() => navigate('/register')}
+					>
+						Register Now
+					</button>
 					<button className='btn-community'>
 						Join The Community
 					</button>
+				</div>
+			</div>
+
+			<div className='events__section'>
+				<h1>Events</h1>
+
+				<div className='events'>
+					{events.map((event, index) => (
+						<div className='event' key={index}>
+							<div className='event__icon'>
+								<img src={event.image} alt={event.name} />
+							</div>
+							<h1>{event.name}</h1>
+						</div>
+					))}
 				</div>
 			</div>
 		</section>

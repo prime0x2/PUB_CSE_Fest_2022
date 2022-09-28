@@ -8,6 +8,42 @@
 		.container {
 			@apply w-full px-5 max-w-7xl mx-auto xl:p-0 flex flex-col items-center justify-center;
 
+			.footer__content {
+				@apply w-full max-w-5xl mx-auto py-10 grid grid-cols-2;
+
+				.left {
+					& > h3 {
+						@apply text-2xl text-slate-500 dark:text-white/90 font-bold;
+					}
+
+					p {
+						@apply mt-1 text-slate-600 dark:text-white/80 font-light tracking-wider;
+					}
+				}
+
+				.right {
+					@apply flex flex-col items-center gap-4;
+
+					& > h3 {
+						@apply text-2xl text-slate-500 dark:text-white/90 font-bold;
+					}
+
+					.infos {
+						@apply flex items-center gap-5;
+
+						.icon {
+							@apply text-3xl text-slate-600 dark:text-emerald-400 hover:text-emerald-500 transition duration-200;
+						}
+
+						a:last-of-type {
+							.icon {
+								@apply text-2xl;
+							}
+						}
+					}
+				}
+			}
+
 			.footer__copyright {
 				@apply py-4 text-center text-sm tracking-wide text-gray-500 dark:text-gray-200 font-light;
 

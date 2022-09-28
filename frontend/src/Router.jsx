@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import AdminLogin from './admin/AdminLogin/AdminLogin';
+import Dashboard from './admin/Dashboard/Dashboard';
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
@@ -10,7 +12,7 @@ import Profile from './pages/Profile/Profile';
 import Register from './pages/Register/Register';
 
 const Router = () => {
-	const user = useSelector((state) => state.user.token);
+	const isAdmin = useSelector((state) => state.user.info?.admin);
 
 	return (
 		<>
@@ -18,21 +20,38 @@ const Router = () => {
 			<Routes>
 				<Route path='/' element={<Home />} />
 
-				{!user && (
+				{/* {!user && (
 					<>
 						<Route path='/login' element={<Login />} />
 						<Route path='/register' element={<Register />} />
+						<Route path='/admin/login' element={<AdminLogin />} />
 					</>
-				)}
+				)} */}
+				<Route path='/login' element={<Login />} />
+				<Route path='/register' element={<Register />} />
+				<Route path='/admin/login' element={<AdminLogin />} />
 
-				<Route
-					path='/profile'
-					element={
-						<PrivateRoute>
-							<Profile />
-						</PrivateRoute>
-					}
-				/>
+				{isAdmin ? (
+					<>
+						<Route
+							path='/admin/dashboard/*'
+							element={
+								<PrivateRoute>
+									<Dashboard />
+								</PrivateRoute>
+							}
+						/>
+					</>
+				) : (
+					<Route
+						path='/profile'
+						element={
+							<PrivateRoute>
+								<Profile />
+							</PrivateRoute>
+						}
+					/>
+				)}
 
 				<Route path='*' element={<Navigate to='/' />} />
 			</Routes>

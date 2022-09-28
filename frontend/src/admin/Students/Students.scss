@@ -1,0 +1,76 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.students {
+		@apply relative;
+
+		.topbar {
+			@apply pb-4 flex items-center justify-between w-full h-16 bg-white dark:bg-slate-900 border-b dark:border-slate-800;
+
+			h1 {
+				@apply text-xl text-slate-600 dark:text-white/90 -mb-2;
+			}
+
+			.input__group {
+				@apply h-10 flex items-center border border-slate-300 dark:border-slate-700 rounded-md pl-3 w-[350px];
+
+				input {
+					@apply flex-grow border-none outline-none ring-0 bg-transparent dark:caret-emerald-500 text-slate-600 dark:text-white tracking-wide;
+				}
+
+				.icon {
+					@apply text-xl text-slate-400 dark:text-emerald-500;
+				}
+			}
+		}
+
+		.allStudents {
+			@apply mt-4 w-full max-h-[calc(100vh-310px)] rounded-md overflow-y-auto;
+
+			.table {
+				@apply w-full h-full rounded-md overflow-hidden;
+
+				thead {
+					@apply bg-slate-200 dark:bg-slate-800/40;
+
+					tr {
+						@apply text-left;
+
+						th {
+							@apply text-slate-600 dark:text-white/80 py-3 px-4;
+						}
+					}
+				}
+
+				tbody {
+					@apply bg-white dark:bg-slate-900;
+
+					tr {
+						@apply text-left;
+
+						td {
+							@apply text-slate-600 dark:text-white/90 py-3 px-4;
+
+							.actions {
+								@apply flex items-center space-x-2;
+
+								.btn-edit {
+									@apply text-slate-500 dark:text-emerald-500 text-2xl;
+								}
+
+								.btn-delete {
+									@apply text-slate-500 dark:text-rose-500 text-[1.30rem] leading-[1.5rem];
+								}
+							}
+						}
+
+						&:nth-child(even) {
+							@apply bg-slate-100 dark:bg-slate-800/50;
+						}
+					}
+				}
+			}
+		}
+	}
+}

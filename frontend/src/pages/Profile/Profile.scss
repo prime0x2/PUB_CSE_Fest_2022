@@ -43,6 +43,22 @@
 					}
 				}
 			}
+
+			.payment__pending {
+				@apply mt-2;
+
+				.icon__wrapper {
+					@apply flex justify-center;
+
+					.icon {
+						@apply text-6xl text-orange-300;
+					}
+				}
+
+				p {
+					@apply text-xl text-center my-5 font-iceberg tracking-wide text-slate-600 dark:text-white/80;
+				}
+			}
 		}
 	}
 }

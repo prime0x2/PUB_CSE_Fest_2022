@@ -1,16 +1,16 @@
 import React from 'react';
-import { BiHash, IoEyeOutline, IoEyeOffOutline } from 'react-icons/all';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import { login } from '../../store/userSlice/userSlice';
-import Loading from '../../components/Loading/Loading';
-import './Login.scss';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { IoAtOutline, IoEyeOutline, IoEyeOffOutline } from 'react-icons/all';
+import Loading from '../../components/Loading/Loading';
+import { login } from '../../store/userSlice/userSlice';
+import './AdminLogin.scss';
+import { toast } from 'react-toastify';
 
-const Login = () => {
+const AdminLogin = () => {
 	// page title
 
-	window.document.title = 'Login | PUB CSE FEST 2022';
+	window.document.title = 'Admin Login';
 
 	// hooks
 
@@ -23,7 +23,7 @@ const Login = () => {
 	const [showPass, setShowPass] = React.useState(false);
 
 	const [data, setData] = React.useState({
-		studentID: '',
+		username: '',
 		password: '',
 	});
 
@@ -34,9 +34,9 @@ const Login = () => {
 
 	React.useEffect(() => {
 		if (isLoggedIn) {
-			navigate('/profile');
+			navigate('/admin/dashboard');
 		}
-	}, [isLoggedIn]);
+	}, []);
 
 	// functions
 
@@ -44,7 +44,7 @@ const Login = () => {
 		e.preventDefault();
 		setLoading(true);
 
-		const url = `${import.meta.env.VITE_API}/api/student/login`;
+		const url = `${import.meta.env.VITE_API}/api/admin/login`;
 
 		fetch(url, {
 			method: 'POST',
@@ -55,22 +55,22 @@ const Login = () => {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				// console.log('login res : ', res);
+				// console.log('admin login res : ', res);
 				if (
 					res.status === 200 &&
-					res.message === 'Logged in successfully'
+					res.message === 'Admin logged in successfully'
 				) {
 					toast.success(res.message);
 					dispatch(login(res.data.token));
 					setError('');
-					navigate('/profile');
+					navigate('/admin/dashboard');
 				} else {
 					toast.error(res.message);
 					setError(res.message);
 				}
 			})
 			.catch((err) => {
-				console.log('login err : ', err);
+				console.log(err);
 				// setError(err.message);
 			})
 			.finally(() => {
@@ -79,9 +79,10 @@ const Login = () => {
 	};
 
 	return (
-		<section className='login page'>
+		<section className='adminLogin page'>
 			<div className='container'>
 				<div className='logo'>
+					<h1>Admin Login</h1>
 					<img src='/logo.png' alt='' />
 				</div>
 
@@ -89,13 +90,13 @@ const Login = () => {
 					<div className='input__group'>
 						<input
 							type='text'
-							placeholder='Student ID'
+							placeholder='Username'
 							onChange={(e) =>
-								setData({ ...data, studentID: e.target.value })
+								setData({ ...data, username: e.target.value })
 							}
 							required
 						/>
-						<BiHash className='icon' />
+						<IoAtOutline className='icon' />
 					</div>
 
 					<div className='input__group'>
@@ -131,4 +132,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default AdminLogin;

@@ -33,6 +33,7 @@ export class AdminServices {
                 id: newAdmin._id,
                 username: newAdmin.username,
                 name: newAdmin.name,
+                admin: newAdmin.admin
             }),
         }
     }
@@ -58,6 +59,7 @@ export class AdminServices {
                 id: admin._id,
                 username: admin.username,
                 name: admin.name,
+                admin: admin.admin
             }),
         }
     }

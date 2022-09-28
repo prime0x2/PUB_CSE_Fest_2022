@@ -1,0 +1,40 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.dashboard {
+		@apply pt-5 flex flex-col items-center justify-center;
+
+		&.page {
+			@apply pb-5;
+		}
+
+		.container {
+			@apply w-full max-w-6xl h-[calc(100vh-180px)] mx-auto flex border dark:border-slate-800 p-5 rounded-lg shadow-[0px_0px_15px_rgba(0,0,0,0.1)] dark:shadow-2xl;
+
+			.sidebar {
+				@apply w-[190px] border-r dark:border-slate-600 flex flex-col gap-3;
+
+				.btn-navItem {
+					@apply w-full py-2 flex items-center gap-4 border-l-2 border-transparent hover:border-emerald-500 hover:dark:border-emerald-400 text-slate-600 dark:text-white/80 hover:text-emerald-600 hover:dark:text-emerald-400 transition duration-200;
+
+					.icon {
+						@apply ml-3 text-2xl;
+					}
+
+					span {
+						@apply font-medium;
+					}
+
+					&.active {
+						@apply border-emerald-500 text-emerald-600 dark:border-emerald-400 dark:text-emerald-400;
+					}
+				}
+			}
+
+			.main {
+				@apply pl-5 w-full;
+			}
+		}
+	}
+}

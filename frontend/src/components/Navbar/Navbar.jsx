@@ -71,9 +71,15 @@ const Navbar = () => {
 						<div className='user'>
 							<button
 								className='btn-register'
-								onClick={() => navigate('/profile')}
+								onClick={() =>
+									user.info?.admin
+										? navigate('/admin/dashboard')
+										: navigate('/profile')
+								}
 							>
-								My Profile
+								{user.info?.admin
+									? 'Admin Dashboard'
+									: 'My Profile'}
 							</button>
 
 							<button
