@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import AdminLogin from './admin/AdminLogin/AdminLogin';
 import Dashboard from './admin/Dashboard/Dashboard';
 import Footer from './components/Footer/Footer';
@@ -12,6 +12,9 @@ import Profile from './pages/Profile/Profile';
 import Register from './pages/Register/Register';
 
 const Router = () => {
+	// hooks
+
+	const { pathname } = useLocation();
 	const isAdmin = useSelector((state) => state.user.info?.admin);
 
 	return (
@@ -55,7 +58,7 @@ const Router = () => {
 
 				<Route path='*' element={<Navigate to='/' />} />
 			</Routes>
-			<Footer />
+			{pathname.includes('admin/dashboard') ? null : <Footer />}
 		</>
 	);
 };

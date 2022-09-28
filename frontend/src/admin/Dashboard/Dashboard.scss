@@ -10,7 +10,7 @@
 		}
 
 		.container {
-			@apply w-full max-w-6xl h-[calc(100vh-180px)] mx-auto flex border dark:border-slate-800 p-5 rounded-lg shadow-[0px_0px_15px_rgba(0,0,0,0.1)] dark:shadow-2xl;
+			@apply w-full max-w-6xl h-[calc(100vh-130px)] mx-auto flex border dark:border-slate-800 p-5 rounded-lg shadow-[0px_0px_15px_rgba(0,0,0,0.1)] dark:shadow-2xl;
 
 			.sidebar {
 				@apply w-[190px] border-r dark:border-slate-600 flex flex-col gap-3;

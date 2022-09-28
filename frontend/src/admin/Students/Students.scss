@@ -26,7 +26,7 @@
 		}
 
 		.allStudents {
-			@apply mt-4 w-full max-h-[calc(100vh-310px)] rounded-md overflow-y-auto;
+			@apply mt-4 w-full max-h-[calc(100vh-270px)] rounded-md overflow-y-auto;
 
 			.table {
 				@apply w-full h-full rounded-md overflow-hidden;
