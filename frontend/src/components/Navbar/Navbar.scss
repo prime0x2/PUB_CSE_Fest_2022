@@ -79,7 +79,7 @@
 		}
 
 		.mobile__actions {
-			@apply flex lg:hidden flex-col gap-7 items-center justify-center w-0 h-screen bg-white dark:bg-slate-900 fixed top-0 right-0 border-l dark:border-l-slate-700 transition-all duration-200 ease-in-out overflow-hidden;
+			@apply flex lg:hidden flex-col gap-7 items-center justify-center w-0 h-screen bg-white dark:bg-slate-900 fixed top-0 right-0 border-l dark:border-l-slate-700 transition-all duration-200 ease-in-out overflow-hidden z-40;
 
 			.user__name {
 				@apply mb-10 text-center text-sm font-light tracking-wide text-slate-600 dark:text-white;
