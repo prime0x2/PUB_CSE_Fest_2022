@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IoMoon, IoSunny, IoMenu } from 'react-icons/io5';
+import { IoMoon, IoSunny, IoMenu, IoCloseOutline } from 'react-icons/io5';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../store/themeSlice/themeSlice';
 import './Navbar.scss';
@@ -14,6 +14,10 @@ const Navbar = () => {
 
 	const theme = useSelector((state) => state.theme.value);
 	const user = useSelector((state) => state.user);
+
+	// states
+
+	const [show, setShow] = React.useState(false);
 
 	// effects
 
@@ -77,9 +81,7 @@ const Navbar = () => {
 										: navigate('/profile')
 								}
 							>
-								{user.info?.admin
-									? 'Admin Dashboard'
-									: 'My Profile'}
+								{user.info?.admin ? 'Dashboard' : 'My Profile'}
 							</button>
 
 							<button
@@ -111,9 +113,76 @@ const Navbar = () => {
 				</div>
 
 				<div className='mobile-nav'>
-					<button className='btn-hamburger'>
-						<IoMenu className='icon' />
+					<button
+						className='btn-hamburger'
+						onClick={() => setShow(!show)}
+					>
+						{show ? (
+							<IoCloseOutline className='icon' />
+						) : (
+							<IoMenu className='icon' />
+						)}
 					</button>
+				</div>
+			</div>
+
+			<div className={show ? 'mobile__actions show' : 'mobile__actions'}>
+				{user.info && (
+					<p className='user__name'>
+						Hello, <br />
+						<span className='userName'>{user.info?.name}</span>
+					</p>
+				)}
+				{!user.token ? (
+					<div className='user'>
+						<button
+							className='btn-register'
+							onClick={() => navigate('/register')}
+						>
+							Register
+						</button>
+						<button
+							className='btn-login'
+							onClick={() => navigate('/login')}
+						>
+							Login
+						</button>
+					</div>
+				) : (
+					<div className='user'>
+						<button
+							className='btn-register'
+							onClick={() =>
+								user.info?.admin
+									? navigate('/admin/dashboard')
+									: navigate('/profile')
+							}
+						>
+							{user.info?.admin ? 'Dashboard' : 'My Profile'}
+						</button>
+
+						<button className='btn-login' onClick={handleLogout}>
+							Logout
+						</button>
+					</div>
+				)}
+
+				<div className='theme'>
+					<input
+						type='checkbox'
+						id='switch'
+						className='checkbox'
+						onChange={() => {
+							dispatch(toggleTheme());
+						}}
+						defaultChecked={theme === 'dark' ? true : false}
+					/>
+
+					<label htmlFor='switch' className='label'>
+						<IoMoon className='moon' />
+						<IoSunny className='sun' />
+						<div className='ball'></div>
+					</label>
 				</div>
 			</div>
 		</nav>

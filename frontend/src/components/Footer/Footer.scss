@@ -9,15 +9,17 @@
 			@apply w-full px-5 max-w-7xl mx-auto xl:p-0 flex flex-col items-center justify-center;
 
 			.footer__content {
-				@apply w-full max-w-5xl mx-auto py-10 grid grid-cols-2;
+				@apply w-full max-w-5xl mx-auto py-10 grid grid-cols-1 lg:grid-cols-2 gap-y-8 xl:gap-y-0;
 
 				.left {
+					@apply text-center lg:text-left;
+
 					& > h3 {
 						@apply text-2xl text-slate-500 dark:text-white/90 font-bold;
 					}
 
 					p {
-						@apply mt-1 text-slate-600 dark:text-white/80 font-light tracking-wider;
+						@apply mt-2 xl:mt-1 text-sm lg:text-base text-slate-600 dark:text-white/80 font-light tracking-wider;
 					}
 				}
 

@@ -3,13 +3,13 @@
 
 @layer components {
 	.profile {
-		@apply py-10 min-h-[calc(100vh-85px)] flex flex-col items-center justify-center;
+		@apply px-5 py-10 min-h-[calc(100vh-85px)] flex flex-col items-center justify-center;
 
 		.container {
-			@apply w-full max-w-3xl mx-auto flex items-center justify-center flex-col border dark:border-slate-800 p-10 rounded-lg dark:shadow-2xl;
+			@apply w-full max-w-3xl mx-auto flex items-center justify-center flex-col border dark:border-slate-800 px-5 py-7 lg:p-10 rounded-lg dark:shadow-2xl;
 
 			& > h1 {
-				@apply mb-6 text-2xl text-slate-600 dark:text-white font-iceberg;
+				@apply mb-4 lg:mb-6 text-2xl text-slate-600 dark:text-white font-iceberg;
 			}
 
 			.payment {
@@ -23,7 +23,7 @@
 					}
 
 					span {
-						@apply text-center font-light tracking-wider text-slate-600 dark:text-white/80;
+						@apply text-sm lg:text-base text-center font-light tracking-wider text-slate-600 dark:text-white/80;
 
 						b {
 							@apply font-extrabold;
@@ -35,11 +35,11 @@
 					@apply w-full max-w-xs mx-auto flex flex-col gap-5 items-center justify-center;
 
 					input {
-						@apply h-12 border border-emerald-300 dark:border-emerald-800 rounded-md pl-4 w-full outline-none ring-0 bg-transparent dark:caret-slate-200 text-slate-600 dark:text-white tracking-wide text-center;
+						@apply h-12 border border-emerald-300 dark:border-emerald-800 rounded-md pl-4 w-full outline-none ring-0 bg-transparent dark:caret-slate-200 text-slate-600 dark:text-white tracking-wider text-center;
 					}
 
 					.btn-payment {
-						@apply w-full h-12 bg-emerald-500/90 text-white rounded-md font-medium text-lg tracking-wide shadow-lg shadow-emerald-500/30 hover:bg-emerald-500 transition duration-300;
+						@apply w-full h-12 bg-emerald-500/90 text-white rounded-md font-medium text-base lg:text-lg tracking-wide shadow-lg shadow-emerald-500/30 hover:bg-emerald-500 transition duration-300;
 					}
 				}
 			}
@@ -51,12 +51,12 @@
 					@apply flex justify-center;
 
 					.icon {
-						@apply text-6xl text-orange-300;
+						@apply text-5xl lg:text-6xl text-orange-300;
 					}
 				}
 
 				p {
-					@apply text-xl text-center my-5 font-iceberg tracking-wide text-slate-600 dark:text-white/80;
+					@apply w-full max-w-lg mx-auto text-sm lg:text-xl text-center my-5 font-iceberg tracking-wide text-slate-600 dark:text-white/80;
 				}
 			}
 		}

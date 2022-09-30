@@ -162,8 +162,8 @@ const Profile = () => {
 							</div>
 							<p>
 								Your payment is being processed. You will be
-								able to <br /> access the events after the
-								payment is confirmed.
+								able to access the events after the payment is
+								confirmed.
 							</p>
 						</div>
 					)}

@@ -3,15 +3,15 @@
 
 @layer components {
 	.login {
-		@apply py-10 min-h-[calc(100vh-85px)] flex flex-col items-center justify-center;
+		@apply px-5 lg:px-0 py-10 min-h-[calc(100vh-85px)] flex flex-col items-center justify-center;
 
 		.container {
-			@apply max-w-md flex items-center justify-center flex-col border dark:border-slate-800 px-10 pb-10 pt-6 rounded-lg dark:shadow-2xl;
+			@apply max-w-md flex items-center justify-center flex-col border dark:border-slate-800 p-5 lg:px-10 lg:pb-10 lg:pt-6 rounded-lg dark:shadow-2xl;
 			box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
 
 			.logo {
 				img {
-					@apply w-60 mb-8;
+					@apply w-44 lg:w-60 mb-8;
 				}
 			}
 
@@ -22,7 +22,7 @@
 					@apply w-full h-12 flex items-center border border-emerald-300 dark:border-emerald-800 rounded-md;
 
 					input {
-						@apply pl-4 w-full outline-none border-none ring-0 bg-transparent dark:caret-slate-200 focus:placeholder:pl-2 text-slate-600 dark:text-white tracking-wide;
+						@apply pl-3 lg:pl-4 w-full outline-none border-none ring-0 bg-transparent dark:caret-slate-200 focus:placeholder:pl-2 text-slate-600 dark:text-white tracking-wide text-sm lg:text-base;
 					}
 
 					input[type='number'] {
@@ -33,16 +33,16 @@
 					}
 
 					.icon {
-						@apply text-[2.5rem] pr-4 text-emerald-500;
+						@apply text-[2.2rem] lg:text-[2.5rem] pr-3 lg:pr-4 text-emerald-500;
 					}
 				}
 
 				.error {
-					@apply text-rose-500 m-0 mt-2 -mb-2;
+					@apply text-rose-500 m-0 mt-2 -mb-2 text-sm lg:text-base;
 				}
 
 				.btn-login {
-					@apply mt-4 w-full h-12 bg-emerald-500/90 text-white rounded-md font-medium text-lg tracking-wide shadow-lg shadow-emerald-500/30 hover:bg-emerald-500 transition duration-300;
+					@apply mt-4 w-full h-12 bg-emerald-500/90 text-white rounded-md font-medium text-base lg:text-lg tracking-wide shadow-lg shadow-emerald-500/30 hover:bg-emerald-500 transition duration-300;
 				}
 			}
 		}

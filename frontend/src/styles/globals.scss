@@ -39,7 +39,7 @@
 
 @layer components {
 	.page {
-		@apply w-full max-w-7xl mx-auto pb-[270px];
+		@apply w-full max-w-7xl mx-auto pb-[400px] lg:pb-[270px];
 	}
 
 	#root {

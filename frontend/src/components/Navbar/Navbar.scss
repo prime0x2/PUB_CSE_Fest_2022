@@ -12,11 +12,11 @@
 				@apply text-emerald-600 dark:text-emerald-400 flex items-center;
 
 				button {
-					@apply w-32 xl:w-40 flex items-center justify-center;
+					@apply w-[6.5rem] xl:w-40 flex items-center justify-center;
 				}
 
 				p {
-					@apply ml-10 text-lg tracking-wide text-slate-600 dark:text-white;
+					@apply hidden lg:block ml-10 text-lg tracking-wide text-slate-600 dark:text-white;
 
 					.userName {
 						@apply font-semibold dark:text-white;
@@ -70,11 +70,68 @@
 			}
 
 			.mobile-nav {
-				@apply flex xl:hidden items-center justify-center;
+				@apply flex xl:hidden items-center justify-center relative z-50;
 
 				.btn-hamburger {
 					@apply text-3xl text-gray-500 dark:text-emerald-400;
 				}
+			}
+		}
+
+		.mobile__actions {
+			@apply flex lg:hidden flex-col gap-7 items-center justify-center w-0 h-screen bg-white dark:bg-slate-900 fixed top-0 right-0 border-l dark:border-l-slate-700 transition-all duration-200 ease-in-out overflow-hidden;
+
+			.user__name {
+				@apply mb-10 text-center text-sm font-light tracking-wide text-slate-600 dark:text-white;
+
+				.userName {
+					@apply font-semibold dark:text-white;
+				}
+			}
+
+			.user {
+				@apply flex flex-col items-center gap-2;
+
+				.btn-login {
+					@apply px-5 py-2 uppercase text-sm font-semibold tracking-wide rounded-md shadow-lg bg-emerald-500 shadow-emerald-500/40 text-white;
+				}
+
+				.btn-register {
+					@apply px-5 py-2 dark:text-white uppercase text-sm font-semibold tracking-wide rounded-md;
+				}
+			}
+
+			.theme {
+				@apply relative;
+
+				.checkbox {
+					@apply opacity-0 absolute cursor-pointer;
+				}
+
+				.label {
+					@apply w-14 h-8 p-[3px] relative flex items-center justify-between bg-slate-900 dark:bg-slate-700 rounded-[100px] cursor-pointer;
+
+					.moon {
+						@apply text-white text-xl;
+					}
+
+					.sun {
+						@apply text-yellow-500 text-xl;
+					}
+
+					.ball {
+						@apply w-[26px] h-[26px] absolute bg-white rounded-full shadow-md transition duration-300;
+						transition: transform 0.2s linear;
+					}
+				}
+
+				.checkbox:checked + .label .ball {
+					@apply transform translate-x-6;
+				}
+			}
+
+			&.show {
+				@apply w-2/3 lg:hidden;
 			}
 		}
 	}
