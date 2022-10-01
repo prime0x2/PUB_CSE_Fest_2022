@@ -127,12 +127,14 @@ const Profile = () => {
 									access to the events.
 									<br />
 									<br />
-									Send <b>500 BDT</b> to the following
+									Send <b>550 BDT</b> to the following
 									personal <b>bkash</b> number and enter the
 									transaction ID below.
 									<br />
 									<br />
-									017XXXXXXXX
+									01568810784
+									<br />
+									01580635803
 								</span>
 							</p>
 

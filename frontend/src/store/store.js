@@ -9,6 +9,7 @@ const store = configureStore({
         user: userReducer,
         students: studentsReducer,
     },
+    devTools: import.meta.env.PROD ? false : true,
 });
 
 export default store;
