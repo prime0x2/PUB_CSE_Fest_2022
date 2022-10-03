@@ -32,7 +32,7 @@ app.use(errorLogger);
 
 /*----------------- server -----------------*/
 
-const httpServer = http.createServer(app);
+// const httpServer = http.createServer(app);
 
 
 /*---------------- database ----------------*/
@@ -40,7 +40,7 @@ const httpServer = http.createServer(app);
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log('Connected to MongoDB');
-        httpServer.listen(PORT, () => {
+        app.listen(PORT, () => {
             console.log(`Server running on http://localhost:${process.env.SERVER_PORT}/api/`);
         });
     })
