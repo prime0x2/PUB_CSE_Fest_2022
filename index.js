@@ -40,7 +40,7 @@ const httpServer = http.createServer(app);
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log('Connected to MongoDB');
-        httpServer.listen(port, () => {
+        httpServer.listen(PORT, () => {
             console.log(`Server running on http://localhost:${process.env.SERVER_PORT}/api/`);
         });
     })
