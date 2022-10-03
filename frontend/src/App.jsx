@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { isExpired, isLoggedIn } from './store/userSlice/userSlice';
 import Router from './Router';
+import Maintenance from './pages/Maintenance/Maintenance';
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -16,7 +17,12 @@ const App = () => {
 
 	return (
 		<>
-			<Router />
+			{import.meta.env.VITE_MAINTAIN === 'true' ? (
+				<Maintenance />
+			) : (
+				<Router />
+			)}
+			
 			<ToastContainer
 				position='top-center'
 				autoClose={1500}
