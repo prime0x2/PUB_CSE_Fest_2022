@@ -8,6 +8,8 @@ import { errorLogger } from './source/middleware/error_logger.middleware.js';
 
 dotenv.config();
 
+const PORT = process.env.SERVER_PORT || 5000;
+
 const app = express();
 
 
@@ -38,7 +40,7 @@ const httpServer = http.createServer(app);
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log('Connected to MongoDB');
-        httpServer.listen(process.env.SERVER_PORT, () => {
+        httpServer.listen(port, () => {
             console.log(`Server running on http://localhost:${process.env.SERVER_PORT}/api/`);
         });
     })
