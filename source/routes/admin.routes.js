@@ -17,6 +17,7 @@ router.put('/payment/reject/:id', verifyJWT, AdminController.rejectPayment);
 router.put('/status/tShirt/:id', verifyJWT, AdminController.tShirtStatus);
 router.put('/status/attendance/:id', verifyJWT, AdminController.attendanceStatus);
 router.put('/status/food/:id', verifyJWT, AdminController.foodStatus);
+// router.delete('/students/bulk', verifyJWT, AdminController.deleteBulkStudents);
 
 
 export default router;

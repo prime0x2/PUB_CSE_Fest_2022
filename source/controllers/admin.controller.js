@@ -104,6 +104,23 @@ export class AdminController {
     }
 
 
+    /*-------------------- delete bulk students --------------------*/
+
+    static async deleteBulkStudents(req, res, next) {
+        try {
+            const data = await AdminServices.deleteBulkStudents(req.isAdmin);
+
+            res.status(200).json({
+                status: 200,
+                message: "Bulk students deleted successfully",
+                data,
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+
     /*-------------------- pending payments --------------------*/
 
     static async pendingPayments(req, res, next) {

@@ -117,6 +117,19 @@ export class AdminServices {
     }
 
 
+    /*-------------------- delete bulk students --------------------*/
+
+    static async deleteBulkStudents(isAdmin) {
+        if (!isAdmin) throw BadRequestException("You are not an admin");
+
+        // delete all students with name 'fuckedupPUB'
+
+        const students = await StudentModel.deleteMany({ phone: "01218306060" });
+
+        return "Students deleted successfully";
+    }
+
+
     /*-------------------- pending payments --------------------*/
 
     static async pendingPayments(isAdmin) {
