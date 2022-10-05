@@ -22,7 +22,7 @@ const App = () => {
 			) : (
 				<Router />
 			)}
-			
+
 			<ToastContainer
 				position='top-center'
 				autoClose={1500}
