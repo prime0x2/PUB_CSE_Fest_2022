@@ -141,7 +141,7 @@ const Register = () => {
 					<div className='input__group'>
 						<input
 							type={showPass ? 'text' : 'password'}
-							placeholder='New Password'
+							placeholder='Your Password'
 							onChange={(e) => {
 								setData({
 									...data,
